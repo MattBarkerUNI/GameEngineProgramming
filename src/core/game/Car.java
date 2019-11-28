@@ -11,7 +11,8 @@ public class Car extends GameObject {
     float rotation = 0;
     PVector move = new PVector(250, 250, 0);
     PVector dir = new PVector(0, 1, 0);
-    boolean fwd, lft, rgt;
+    boolean fwd, lft, rgt = false;
+
 
     public Car(PApplet p, int x, int y, int w, int h) {
         this.parent = p;
@@ -21,8 +22,6 @@ public class Car extends GameObject {
 
     @Override
     public void update() {
-        move(); //performs movement controls to allow the car to move
-
         this.parent.pushMatrix();
         //this.parent.rectMode(CENTER);
         this.parent.translate(move.x, move.y);
@@ -39,70 +38,54 @@ public class Car extends GameObject {
         if (fwd) {
             move.add(dir.setMag(5));
         }
-
-        //Car rectangle
-        //parent.rect(this.position.x, this.position.y, 50, 75); //Link to PApplet parent ||| using variable for position instead of hard-coding
+        move(); //performs movement controls to allow the car to move
 
     }
 
 
     public void move() {
 
-        //move Car
-        //use arrow keys/WASD to move car
-
-        //parent.keyReleased();
-        //if(parent.key == 'a'){
-        //    lft = false;
-        //}
-
         parent.keyReleased();
-        if(parent.key == 'a'){
-            lft = false;
-        }
-        if(parent.key == 'd') {
-            rgt = false;
-        }
-        if(parent.key == 'w'){
+        if (this.parent.key == 'w') {
             fwd = false;
         }
 
+        parent.keyReleased();
+        if (this.parent.key == 'd') {
+            rgt = false;
+        }
+
+        parent.keyReleased();
+        if (this.parent.key == 'a') {
+            lft = false;
+        }
+
+        //move Car
+        //use arrow keys/WASD to move car
         if (parent.keyPressed) {
             if (parent.key == 'a') {
                 //move left
                 lft = true;
                 rgt = false;
+            }
+        }
 
-            } else if (parent.key == 'd') {
+        if (parent.keyPressed) {
+            if (parent.key == 'd') {
                 //move right
                 lft = false;
                 rgt = true;
-
             }
-            if (parent.key == 'w') {
-                //move forward
-                fwd = true;
 
+            if (parent.keyPressed) {
+                if (parent.key == 'w') {
+                    //move forward
+                    fwd = true;
+                }
             }
         }
     }
 }
-
-
-
-        /*parent.keyReleased();
-        if (parent.key == 'a') {
-            lft = false;
-        }
-        parent.keyReleased();
-        if (parent.key == 'd') {
-            rgt = false;
-        }
-        parent.keyReleased();
-        if (parent.key == 'w') {
-            fwd = false;
-        }*/
-
 
 //  public void start() {
 //}
@@ -112,7 +95,3 @@ public class Car extends GameObject {
 // move();
 //this.parent.rect(this.position.x, this.position.y, this.size.x, this.size.y);
 // }
-
-
-
-
