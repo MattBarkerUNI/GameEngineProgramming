@@ -48,17 +48,12 @@ public class Car extends GameObject {
         parent.keyReleased();
         if (this.parent.key == 'w') {
             fwd = false;
-        }
-
-        parent.keyReleased();
-        if (this.parent.key == 'd') {
+        } else if (this.parent.key == 'd') {
             rgt = false;
-        }
-
-        parent.keyReleased();
-        if (this.parent.key == 'a') {
+        } else if (this.parent.key == 'a') {
             lft = false;
         }
+
 
         //move Car
         //use arrow keys/WASD to move car
@@ -68,20 +63,15 @@ public class Car extends GameObject {
                 lft = true;
                 rgt = false;
             }
-        }
 
-        if (parent.keyPressed) {
             if (parent.key == 'd') {
                 //move right
                 lft = false;
                 rgt = true;
             }
-
-            if (parent.keyPressed) {
-                if (parent.key == 'w') {
-                    //move forward
-                    fwd = true;
-                }
+            if (parent.key == 'w') {
+                //move forward
+                fwd = true;
             }
         }
     }
