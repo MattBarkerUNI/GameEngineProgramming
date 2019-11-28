@@ -17,4 +17,8 @@ public class GameObject {
         //this.position.x +=2;
         parent.rect(this.position.x, this.position.y, 50, 75); //Link to PApplet parent ||| using variable for position instead of hard-coding
     }
+
+    public void update(int a){
+
+    }
 }
