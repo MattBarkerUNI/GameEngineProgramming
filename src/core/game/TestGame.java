@@ -16,6 +16,8 @@ public class TestGame {
         gameCar.position.x = 280;
         gameCar.position.y = 100;
         game_manager.add_game_object(gameCar); //Adds game object to the list
+
+        //add player
     }
     public void update(){
         game_manager.update();

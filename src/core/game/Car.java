@@ -17,19 +17,12 @@ public class Car extends GameObject {
         this.parent = p;
         this.size = new PVector(w, h, 0);
         this.position = new PVector(x, y, 0);
-
     }
 
     @Override
     public void update() {
-        //this.position.x +=2;
-        move();
-        //Car rectangle
-        //parent.rect(this.position.x, this.position.y, 50, 75); //Link to PApplet parent ||| using variable for position instead of hard-coding
-    }
+        move(); //performs movement controls to allow the car to move
 
-
-    public void move() {
         this.parent.pushMatrix();
         //this.parent.rectMode(CENTER);
         this.parent.translate(move.x, move.y);
@@ -46,38 +39,80 @@ public class Car extends GameObject {
         if (fwd) {
             move.add(dir.setMag(5));
         }
+
+        //Car rectangle
+        //parent.rect(this.position.x, this.position.y, 50, 75); //Link to PApplet parent ||| using variable for position instead of hard-coding
+
+    }
+
+
+    public void move() {
+
         //move Car
         //use arrow keys/WASD to move car
+
+        //parent.keyReleased();
+        //if(parent.key == 'a'){
+        //    lft = false;
+        //}
+
+        parent.keyReleased();
+        if(parent.key == 'a'){
+            lft = false;
+        }
+        if(parent.key == 'd') {
+            rgt = false;
+        }
+        if(parent.key == 'w'){
+            fwd = false;
+        }
+
         if (parent.keyPressed) {
             if (parent.key == 'a') {
                 //move left
                 lft = true;
                 rgt = false;
+
             } else if (parent.key == 'd') {
                 //move right
                 lft = false;
                 rgt = true;
+
             }
             if (parent.key == 'w') {
                 //move forward
                 fwd = true;
+
             }
-
         }
-
-
-        //if(parent.keyReleased();
-
-
     }
-
-    //  public void start() {
-    //}
-
-    //@Override
-    //public static void update(){
-    // move();
-    //this.parent.rect(this.position.x, this.position.y, this.size.x, this.size.y);
-    // }
 }
+
+
+
+        /*parent.keyReleased();
+        if (parent.key == 'a') {
+            lft = false;
+        }
+        parent.keyReleased();
+        if (parent.key == 'd') {
+            rgt = false;
+        }
+        parent.keyReleased();
+        if (parent.key == 'w') {
+            fwd = false;
+        }*/
+
+
+//  public void start() {
+//}
+
+//@Override
+//public static void update(){
+// move();
+//this.parent.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+// }
+
+
+
 
