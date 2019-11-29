@@ -14,7 +14,6 @@ public class Car extends Sprite implements MoveAble {
     float rotation = 0;
     PVector move = new PVector(250, 250, 0);
     PVector dir = new PVector(0, 1, 0);
-    boolean fwd, lft, rgt = false;
 
     public Car(PApplet p, int x, int y, int w, int h) {
         super(p, x, y, w, h);
@@ -31,16 +30,6 @@ public class Car extends Sprite implements MoveAble {
         this.parent.rotate(rotation);
         this.parent.rect(0, 0, 30, 50);
         this.parent.popMatrix();
-        if (lft) {
-            rotation -= angle;
-            dir.rotate(-angle);
-        } else if (rgt) {
-            rotation += angle;
-            dir.rotate(angle);
-        }
-        if (fwd) {
-            move.add(dir.setMag(5));
-        }
     }
 
     @Override
