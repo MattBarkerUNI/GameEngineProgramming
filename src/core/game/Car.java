@@ -1,11 +1,11 @@
 package core.game;
-
 import com.sun.tools.javac.Main;
+import core.game_engine.input_commands.MoveAble;
 import processing.core.PApplet;
 import processing.core.PVector;
 import core.game_engine.GameObject;
 
-public class Car extends GameObject {
+public class Car extends GameObject implements MoveAble {
     public PVector size;
     float angle = (float) 0.06981317007;
     float rotation = 0;
@@ -38,42 +38,26 @@ public class Car extends GameObject {
         if (fwd) {
             move.add(dir.setMag(5));
         }
-        move(); //performs movement controls to allow the car to move
+        //move(); //performs movement controls to allow the car to move
 
     }
 
 
-    public void move() {
-        //if player releases movement key then the car will stop
-        parent.keyReleased();
-        if (this.parent.key == 'w') {
-            fwd = false;
-        } else if (this.parent.key == 'd') {
-            rgt = false;
-        } else if (this.parent.key == 'a') {
-            lft = false;
-        }
+    @Override
+    public void moveLeft() {
+        rotation -= angle;
+        dir.rotate(-angle);
+    }
 
+    @Override
+    public void moveRight() {
+        rotation += angle;
+        dir.rotate(angle);
+    }
 
-        //move Car
-        //use arrow keys/WASD to move car
-        if (parent.keyPressed) {
-            if (parent.key == 'a') {
-                //move left
-                lft = true;
-                rgt = false;
-            }
-
-            if (parent.key == 'd') {
-                //move right
-                lft = false;
-                rgt = true;
-            }
-            if (parent.key == 'w') {
-                //move forward
-                fwd = true;
-            }
-        }
+    @Override
+    public void moveForward() {
+        move.add(dir.setMag(5));
     }
 }
 

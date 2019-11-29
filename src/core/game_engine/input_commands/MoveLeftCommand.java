@@ -1,4 +1,4 @@
-package core.game.input_commands;
+package core.game_engine.input_commands;
 
 public class MoveLeftCommand implements Command {
     private MoveAble actor;

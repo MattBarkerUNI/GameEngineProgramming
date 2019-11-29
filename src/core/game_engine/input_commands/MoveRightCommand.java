@@ -1,4 +1,4 @@
-package core.game.input_commands;
+package core.game_engine.input_commands;
 
 public class MoveRightCommand implements Command {
     private MoveAble actor;
