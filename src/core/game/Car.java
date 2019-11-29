@@ -1,10 +1,11 @@
 package core.game;
+import core.game_engine.Sprite;
 import core.game_engine.input_commands.MoveAble;
 import processing.core.PApplet;
 import processing.core.PVector;
 import core.game_engine.GameObject;
 
-public class Car extends GameObject implements MoveAble {
+public class Car extends Sprite implements MoveAble {
     public PVector size;
     float angle = (float) 0.06981317007;
     float rotation = 0;
@@ -13,9 +14,9 @@ public class Car extends GameObject implements MoveAble {
     boolean fwd, lft, rgt = false;
 
     public Car(PApplet p, int x, int y, int w, int h) {
+        super(p, x, y, w, h);
         this.parent = p;
         this.size = new PVector(w, h, 0);
-        this.position = new PVector(x, y, 0);
     }
 
     @Override

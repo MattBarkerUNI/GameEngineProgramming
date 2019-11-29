@@ -19,11 +19,11 @@ public class InputController {
     }
     public void keyHandler(char key, int keyCode, boolean active){
         //checking if the input is active based on the keys the user is pressing
-        if(key == 'a' || keyCode == PApplet.LEFT){ //accessible as statics through the PApplet class ||| do not need tp use parent or create instance
+        if(key == 'A' || key == 'a' || keyCode == PApplet.LEFT){ //accessible as statics through the PApplet class ||| do not need tp use parent or create instance
             left = active;
-        }else if(key == 'd' || keyCode == PApplet.RIGHT){
+        }else if(key == 'D'|| key == 'd' || keyCode == PApplet.RIGHT){
             right = active;
-        }else if(key == 'w' || keyCode == PApplet.UP){
+        }else if(key == 'W' || key == 'w' || keyCode == PApplet.UP){
             forward = active;
         }else if(!active && keyCode != 0){ //if no keys are active then the value returned is false
             left = false;
