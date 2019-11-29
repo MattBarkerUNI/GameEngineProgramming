@@ -44,7 +44,7 @@ public class Car extends GameObject {
 
 
     public void move() {
-
+        //if player releases movement key then the car will stop
         parent.keyReleased();
         if (this.parent.key == 'w') {
             fwd = false;
