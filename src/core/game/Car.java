@@ -1,5 +1,4 @@
 package core.game;
-import com.sun.tools.javac.Main;
 import core.game_engine.input_commands.MoveAble;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -12,7 +11,6 @@ public class Car extends GameObject implements MoveAble {
     PVector move = new PVector(250, 250, 0);
     PVector dir = new PVector(0, 1, 0);
     boolean fwd, lft, rgt = false;
-
 
     public Car(PApplet p, int x, int y, int w, int h) {
         this.parent = p;
@@ -42,7 +40,6 @@ public class Car extends GameObject implements MoveAble {
 
     }
 
-
     @Override
     public void moveLeft() {
         rotation -= angle;
@@ -60,12 +57,3 @@ public class Car extends GameObject implements MoveAble {
         move.add(dir.setMag(5));
     }
 }
-
-//  public void start() {
-//}
-
-//@Override
-//public static void update(){
-// move();
-//this.parent.rect(this.position.x, this.position.y, this.size.x, this.size.y);
-// }
