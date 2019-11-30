@@ -37,6 +37,7 @@ public class Car extends Sprite implements MoveAble {
     public void moveLeft() {
         rotation -= angle;
         dir.rotate(-angle);
+        minusDir.rotate(-angle);
         //this.physicsComponent.setVelocity(-acceleration, 0);
     }
 
@@ -44,6 +45,7 @@ public class Car extends Sprite implements MoveAble {
     public void moveRight() {
         rotation += angle;
         dir.rotate(angle);
+        minusDir.rotate(angle);
         //this.physicsComponent.setVelocity(acceleration, 0);
     }
 
