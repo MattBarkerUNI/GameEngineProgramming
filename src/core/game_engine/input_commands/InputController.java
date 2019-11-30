@@ -7,15 +7,17 @@ public class InputController {
     MoveLeftCommand moveLeftCommand;
     MoveRightCommand moveRightCommand;
     MoveForwardCommand moveForwardCommand;
+    MoveBackwardCommand moveBackwardCommand;
 
-    boolean left, right, forward;
+    boolean left, right, forward, backward;
     public InputController(MoveAble _actor){ //implements the MoveAble
         //connecting the commands to the _actor
         moveLeftCommand = new MoveLeftCommand(_actor);
         moveRightCommand = new MoveRightCommand(_actor);
         moveForwardCommand = new MoveForwardCommand(_actor);
+        moveBackwardCommand = new MoveBackwardCommand(_actor);
 
-        inputHandler = new InputHandler(moveLeftCommand, moveRightCommand, moveForwardCommand);
+        inputHandler = new InputHandler(moveLeftCommand, moveRightCommand, moveForwardCommand, moveBackwardCommand);
     }
     public void keyHandler(char key, int keyCode, boolean active){
         //checking if the input is active based on the keys the user is pressing
@@ -25,10 +27,13 @@ public class InputController {
             right = active;
         }else if(key == 'W' || key == 'w' || keyCode == PApplet.UP){
             forward = active;
+        }else if(key == 'S' || key == 's' || keyCode == PApplet.DOWN){
+            backward = active;
         }else if(!active && keyCode != 0){ //if no keys are active then the value returned is false
             left = false;
             right = false;
             forward = false;
+            backward = false;
         }
     }
     public void checkInput(){
@@ -41,6 +46,9 @@ public class InputController {
         }
         if(forward){
             inputHandler.moveForward();
+        }
+        if(backward){
+            inputHandler.moveBackward();
         }
     }
 }

@@ -14,6 +14,7 @@ public class Car extends Sprite implements MoveAble {
     float rotation = 0;
     PVector move = new PVector(250, 250, 0);
     PVector dir = new PVector(0, 1, 0);
+    PVector minusDir = new PVector(0, -1, 0);
 
     public Car(PApplet p, int x, int y, int w, int h) {
         super(p, x, y, w, h);
@@ -50,5 +51,10 @@ public class Car extends Sprite implements MoveAble {
     public void moveForward() {
         move.add(dir.setMag(5));
         //this.physicsComponent.setVelocity(0, acceleration);
+    }
+
+    @Override
+    public void moveBackward(){
+        move.add(minusDir.setMag(5));
     }
 }
