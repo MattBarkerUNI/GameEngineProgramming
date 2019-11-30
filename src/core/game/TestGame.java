@@ -8,6 +8,7 @@ public class TestGame {
     public PApplet parent;
     private GameManager game_manager;
     Car car;
+    Track track;
     InputController carInput; //controls the car's input
 
     public TestGame(PApplet p){
@@ -18,12 +19,19 @@ public class TestGame {
         car = new Car(this.parent, 30, 300, 200, 20);
         car.position.x = 280;
         car.position.y = 100;
+        track = new Track(this.parent, 30, 300, 200, 20);
+        track.position.x = 280;
+        track.position.y = 100;
+
         //game_manager.add_game_object(car); //Adds game object to the list
 
         //add player
         car = new Car(this.parent, 300, 200, 20, 20);
         carInput = new InputController(car);
         game_manager.add_game_object(car);
+
+        game_manager.add_game_object(track);
+
 
     }
     public void update(){
