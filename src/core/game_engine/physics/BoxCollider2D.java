@@ -8,7 +8,16 @@ import java.util.ArrayList;
 public class BoxCollider2D extends Component {
     private boolean hasCollided = false;
     private Rectangle bounds;
+    public Rectangle getBounds(){
+        return this.bounds;
+    }
+
     private ArrayList<BoxCollider2D> otherColliders = new ArrayList<>();
+
+    public ArrayList<BoxCollider2D> getOtherColliders() {
+        return otherColliders;
+    }
+
     public BoxCollider2D(Sprite g, float w, float h){
         super(g);
         this.bounds = new Rectangle(gameObject.position.x, gameObject.position.y, w, h);

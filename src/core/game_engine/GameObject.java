@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class GameObject {
     public PApplet parent;
     public PVector position;
+    public PVector next_position;
     public ArrayList<Component> componentList = new ArrayList<>();
     public GameObject(){ //Constructor
 
@@ -14,6 +15,7 @@ public class GameObject {
     public GameObject(PApplet p){ //Constructor linking PApplet
         this.parent = p;
         this.position = new PVector(0, 0, 0); //parameters for the game objects position
+        this.next_position = new PVector(0,0,0);
     }
 
     public void update(){

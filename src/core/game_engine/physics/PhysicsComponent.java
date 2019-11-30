@@ -19,7 +19,16 @@ public class PhysicsComponent extends Component {
         if(velocity.mag() > maxSpeed){
             velocity.setMag(maxSpeed);
         }
-        this.gameObject.position.add(velocity);
+        if(this.boxCollider2D.getOtherColliders().size() > 0){
+            for(BoxCollider2D otherBoxCollider: this.boxCollider2D.getOtherColliders()){
+                //consider what happens with the collision now
+                this.velocity.x = 0;
+                this.velocity.y = 0;
+            }
+            this.boxCollider2D.getOtherColliders().clear();
+        }
+        this.gameObject.position.set(this.gameObject.next_position.copy()); //quickly update current position with next position || allows to rest cars position if collision
+        this.gameObject.next_position.add(this.velocity);
     }
 
     public void setVelocity(float x, float y) {

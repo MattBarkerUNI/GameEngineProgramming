@@ -17,8 +17,9 @@ public class Track extends Sprite {
     public void update(){
         super.update();
         parent.pushMatrix();
-        parent.translate(this.position.x, this.position.y);
-        this.parent.rect(0, 0, this.size.x, this.size.y);
+            parent.rectMode(PApplet.CENTER);
+            parent.translate(this.position.x, this.position.y);
+            this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
     }
 

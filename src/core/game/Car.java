@@ -20,16 +20,17 @@ public class Car extends Sprite implements MoveAble {
         super(p, x, y, w, h);
         this.parent = p;
         this.size = new PVector(w, h, 0);
-        physicsComponent = new PhysicsComponent(this); // reference to this current gameObject being added in
+        physicsComponent = new PhysicsComponent(this, this.boxCollider2D); // reference to this current gameObject being added in
     }
 
     @Override
     public void update() {
         super.update();
         this.parent.pushMatrix();
-        this.parent.translate(move.x, move.y);
-        this.parent.rotate(rotation);
-        this.parent.rect(0, 0, 30, 50);
+            this.parent.rectMode(PApplet.CENTER);
+            this.parent.translate(move.x, move.y);
+            this.parent.rotate(rotation);
+            this.parent.rect(0, 0, 30, 50);
         this.parent.popMatrix();
     }
 
