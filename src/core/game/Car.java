@@ -30,7 +30,7 @@ public class Car extends Sprite implements MoveAble {
             this.parent.rectMode(PApplet.CENTER);
             this.parent.translate(move.x, move.y);
             this.parent.rotate(rotation);
-            this.parent.rect(0, 0, 30, 50);
+            this.parent.rect(0, 0, this.size.x, this.size.y);
         this.parent.popMatrix();
     }
 

@@ -25,7 +25,7 @@ public class TestGame {
         //game_manager.add_game_object(car); //Adds game object to the list
 
         //add player
-        car = new Car(this.parent, 300, 200, 20, 20);
+        car = new Car(this.parent, 300, 200, 30, 50);
         carInput = new InputController(car);
         game_manager.add_game_object(car);
 
