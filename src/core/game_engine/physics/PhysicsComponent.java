@@ -7,8 +7,10 @@ import processing.core.PVector;
 public class PhysicsComponent extends Component {
     private PVector velocity = new PVector(0, 0, 0);
     public float maxSpeed = 5f;
-    public PhysicsComponent(Sprite g){
+    private BoxCollider2D boxCollider2D;
+    public PhysicsComponent(Sprite g, BoxCollider2D b){
         super(g);
+        this.boxCollider2D = b;
 
     }
 

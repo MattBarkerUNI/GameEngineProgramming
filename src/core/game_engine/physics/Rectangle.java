@@ -1,21 +1,14 @@
 package core.game_engine.physics;
 
 public class Rectangle {
-    public Rectangle(float x, float y, float w, float h){
-        this.width = w;
-        this.height = h;
-        this.updateBounds(x, y);
-    }
     private float x, y, width, height;
     private Point topRight = new Point(1,1);
     private Point bottomLeft = new Point(-1, -1);
 
-    public void setY(float y) {
-        this.y = y;
-    }
-
-    public void setX(float x) {
-        this.x = x;
+    public Rectangle(float x, float y, float w, float h){
+        this.width = w;
+        this.height = h;
+        this.updateBounds(x, y);
     }
 
     public Point getBottomLeft() {
@@ -32,6 +25,17 @@ public class Rectangle {
 
     public void setBottomLeft(Point bottomLeft) {
         this.bottomLeft = bottomLeft;
+    }
+
+    public boolean isOverlapping(Rectangle other){
+        //check if the top/bottom not overlapping
+        if(this.topRight.getY() > other.bottomLeft.getY() || this.bottomLeft.getY() < other.topRight.getY()) { // if topRight is greater than bottomLeft ...
+            return false;
+        }
+        if(this.topRight.getX() < other.bottomLeft.getX() || this.bottomLeft.getX() > other.topRight.getX()){
+            return false;
+        }
+        return true;
     }
 
     public void updateBounds(float x, float y){
