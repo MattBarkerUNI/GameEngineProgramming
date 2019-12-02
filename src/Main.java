@@ -24,4 +24,12 @@ public class Main extends PApplet {
         //System.out.println("Test Message");
         PApplet.main("Main");
     }
+    public void keyPressed(){ //key listeners, event of such key press
+        testGame.keyPressed(key, keyCode);
+
+    }
+    public void keyReleased(){
+        testGame.keyReleased(key, keyCode);
+
+    }
 }
