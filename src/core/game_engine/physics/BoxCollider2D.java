@@ -25,7 +25,7 @@ public class BoxCollider2D extends Component {
     }
     @Override
     public void update(){
-        //this.bounds.updateBounds(nextPos); //create a variable for the new position to be updated
+        this.bounds.updateBounds(gameObject.position.x, gameObject.position.y); //create a variable for the new position to be updated
     }
     //check for collision
     public void checkCollisions(BoxCollider2D other){

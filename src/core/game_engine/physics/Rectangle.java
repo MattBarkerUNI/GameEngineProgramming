@@ -29,7 +29,10 @@ public class Rectangle {
 
     public boolean isOverlapping(Rectangle other){
         //check if the top/bottom not overlapping
-        if(this.topRight.getY() > other.bottomLeft.getY() || this.bottomLeft.getY() < other.topRight.getY()) { // if topRight is greater than bottomLeft ...
+        if(this.topRight.getY() > other.bottomLeft.getY() ) { // if topRight is greater than bottomLeft ...
+            return false;
+        }
+        if( this.bottomLeft.getY() < other.topRight.getY()) { // if topRight is greater than bottomLeft ...
             return false;
         }
         if(this.topRight.getX() < other.bottomLeft.getX() || this.bottomLeft.getX() > other.topRight.getX()){

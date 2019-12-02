@@ -28,8 +28,9 @@ public class Car extends Sprite implements MoveAble {
         super.update();
         this.parent.pushMatrix();
             this.parent.rectMode(PApplet.CENTER);
-            this.parent.translate(move.x, move.y);
+            this.parent.translate(this.position.x, this.position.y);
             this.parent.rotate(rotation);
+            this.parent.fill(0,0,200);
             this.parent.rect(0, 0, this.size.x, this.size.y);
         this.parent.popMatrix();
     }
@@ -37,27 +38,32 @@ public class Car extends Sprite implements MoveAble {
     @Override
     public void moveLeft() {
         rotation -= angle;
-        dir.rotate(-angle);
-        minusDir.rotate(-angle);
+       // dir.rotate(-angle);
+       // minusDir.rotate(-angle);
+        this.physicsComponent.turn(-angle);
         //this.physicsComponent.setVelocity(-acceleration, 0);
+
     }
 
     @Override
     public void moveRight() {
         rotation += angle;
-        dir.rotate(angle);
-        minusDir.rotate(angle);
+//        dir.rotate(angle);
+       // minusDir.rotate(angle);
+        this.physicsComponent.turn(angle);
         //this.physicsComponent.setVelocity(acceleration, 0);
     }
 
     @Override
     public void moveForward() {
-        move.add(dir.setMag(5));
-        //this.physicsComponent.setVelocity(0, acceleration);
+        //move.add(dir.setMag(5));
+       // this.physicsComponent.setVelocity(0, acceleration);
+        this.physicsComponent.moveFwd();
     }
 
     @Override
-    public void moveBackward(){
+    public void moveBackward()
+    {
         move.add(minusDir.setMag(5));
     }
 }

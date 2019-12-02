@@ -19,15 +19,17 @@ public class TestGame {
         car = new Car(this.parent, 30, 300, 200, 20);
         car.position.x = 280;
         car.position.y = 100;
-        track = new Track(this.parent, 30, 300, 200, 20);
-        game_manager.add_game_object(track);
-
-        //game_manager.add_game_object(car); //Adds game object to the list
-
         //add player
         car = new Car(this.parent, 300, 200, 30, 50);
         carInput = new InputController(car);
         game_manager.add_game_object(car);
+
+        track = new Track(this.parent, 120, 300, 200, 40);
+        game_manager.add_game_object(track);
+
+        //game_manager.add_game_object(car); //Adds game object to the list
+
+
 
 
     }
