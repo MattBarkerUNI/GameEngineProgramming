@@ -46,7 +46,7 @@ public class Rectangle {
         this.y = y;
         this.bottomLeft.setX(this.x - this.width / 2f);
         this.bottomLeft.setY(this.y + this.height / 2f);
-        this.topRight.setX(this.x + this.height / 2f);
+        this.topRight.setX(this.x + this.width / 2f);
         this.topRight.setY(this.y - this.height / 2f);
     }
 }
