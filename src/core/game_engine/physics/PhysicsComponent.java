@@ -71,15 +71,17 @@ public void turn(float dir){
                 velocity.y = 0;
                 break;
             case BOTTOM:
+                float tmpY = otherTopRight.getY();
+                float tmpYmove = this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
                 this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
                 velocity.y = 0;
                 break;
             case LEFT:
-                this.gameObject.next_position.y = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
+              //  this.gameObject.next_position.x = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
                 velocity.x = 0;
                 break;
             case RIGHT:
-                this.gameObject.next_position.y = otherTopRight.getX() + this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
+               // this.gameObject.next_position.x = otherTopRight.getX() + this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
                 velocity.x = 0;
                 break;
         }

@@ -1,0 +1,11 @@
+{
+  "Level 1": [{
+    "w": 50,
+    "x": 325,
+    "h": 20,
+    "name": "My Sprite",
+    "y": 325,
+    "type": "Track"
+  }],
+  "name": "My Game Data"
+}

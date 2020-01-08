@@ -1,12 +1,14 @@
 package core.game_engine;
 
+//import core.game_engine.data_management.Serializable;
+
 import core.game_engine.data_management.Serializable;
 import core.game_engine.physics.BoxCollider2D;
 import processing.core.PApplet;
 import processing.core.PVector;
 import processing.data.JSONObject;
 
-public abstract class Sprite extends GameObject  implements Serializable {
+public abstract class Sprite extends GameObject implements Serializable {
     public BoxCollider2D boxCollider2D;
     public String name = "My Sprite";
     public String type = "Sprite";

@@ -2,6 +2,7 @@ package core.game;
 import core.game_engine.LayerTypes;
 import core.game_engine.Sprite;
 import core.game_engine.input_commands.MoveAble;
+import core.game_engine.physics.BoxCollider2D;
 import core.game_engine.physics.PhysicsComponent;
 import processing.core.PApplet;
 import processing.core.PVector;
@@ -22,7 +23,8 @@ public class Car extends Sprite implements MoveAble {
         this.type = "Car";
         this.layerType = LayerTypes.MOVING;
         this.size = new PVector(w, h, 0);
-        physicsComponent = new PhysicsComponent(this, this.boxCollider2D); // reference to this current gameObject being added in
+        this.boxCollider2D = new BoxCollider2D(this, w, h);
+        this.physicsComponent = new PhysicsComponent(this, this.boxCollider2D); // reference to this current gameObject being added in
     }
 
     @Override

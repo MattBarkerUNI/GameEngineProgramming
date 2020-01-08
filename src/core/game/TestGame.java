@@ -24,7 +24,7 @@ public class TestGame {
         game_manager = new GameManager(this.parent); //Link to parent PApplet
         dataManager = new DataManager(this.parent);
         levelManager = new LevelManager(this.parent, game_manager);
-        //load_game();
+        load_game();
 
 
         /*car = new Car(this.parent, 30, 300, 200, 20);

@@ -14,8 +14,8 @@ public class LevelManager {
     private GameManager gameManager;
     char currentKey = 't';
     private String level_name = "Level 1";
-    private int trackWidth = 50;
-    private int trackHeight = 20;
+    private int trackWidth = 60;
+    private int trackHeight = 60;
     String itemType = "Track";
     boolean mouse_down = false;
     DataManager dataManager;
@@ -77,6 +77,8 @@ public class LevelManager {
                 mouse_down = true;
                 handle_key();
             }
+        }else{
+            mouse_down = false;
         }
         show_menu();
     }
@@ -92,6 +94,7 @@ public class LevelManager {
     }
 
     private void handle_key(){
+        System.out.println("handle_key currentKey " +currentKey);
         switch (currentKey){
             case 't':
             case 'T':

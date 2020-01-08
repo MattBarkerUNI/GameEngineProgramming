@@ -24,6 +24,9 @@ public class GameManager {
         //Initialising the list
         this.game_objects = new ArrayList<Sprite>(); //Defining what gameobjects we are using
     }
+    public void add_sprite_array(ArrayList<Sprite> newSprites){
+        this.game_objects.addAll(newSprites);
+    }
     public void update(){
         //Update all objects in the GameManager
         for(int i = 0; i < this.game_objects.size(); i ++) {
