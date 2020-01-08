@@ -1,4 +1,5 @@
 package core.game;
+import core.game_engine.LayerTypes;
 import core.game_engine.Sprite;
 import core.game_engine.input_commands.MoveAble;
 import core.game_engine.physics.PhysicsComponent;
@@ -18,6 +19,8 @@ public class Car extends Sprite implements MoveAble {
     public Car(PApplet p, int x, int y, int w, int h) {
         super(p, x, y, w, h);
         this.parent = p;
+        this.type = "Car";
+        this.layerType = LayerTypes.MOVING;
         this.size = new PVector(w, h, 0);
         physicsComponent = new PhysicsComponent(this, this.boxCollider2D); // reference to this current gameObject being added in
     }

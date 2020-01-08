@@ -8,7 +8,18 @@ public class GameObject {
     public PApplet parent;
     public PVector position;
     public PVector next_position;
-    public ArrayList<Component> componentList = new ArrayList<>();
+    protected LayerTypes layerType = LayerTypes.BACKGROUND;
+    protected boolean isActive = true;
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public LayerTypes getLayerType() {
+        return layerType;
+    }
+
+    protected ArrayList<Component> componentList = new ArrayList<>();
     public GameObject(){ //Constructor
 
     }

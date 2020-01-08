@@ -6,28 +6,31 @@ import core.game_engine.physics.BoxCollider2D;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Track extends Sprite {
+public class Collectable extends Sprite {
+    public PVector size;
 
-    public Track(PApplet p, int x, int y, int w, int h){
+
+    public Collectable(PApplet p, int x, int y, int w, int h){
         super(p, x, y, w, h);
-        this.type = "Track";
         this.parent = p;
         this.size = new PVector(w, h, 0);
 
-        this.layerType = LayerTypes.STATIC;
+        this.layerType = LayerTypes.INTERACTABLE;
         //this.position = new PVector(x, y, 0);
         this.boxCollider2D = new BoxCollider2D(this, w, h);
     }
 
     @Override
     public void update(){
+        if(!this.isActive){
+            return;
+        }
         super.update();
         parent.pushMatrix();
-            parent.rectMode(PApplet.CENTER);
-            parent.translate(this.position.x, this.position.y);
-            parent.fill(255);
-            this.parent.rect(0, 0, this.size.x, this.size.y);
+        parent.rectMode(PApplet.CENTER);
+        parent.translate(this.position.x, this.position.y);
+        parent.fill(0, 200, 0);
+        this.parent.rect(0, 0, this.size.x, this.size.y);
         parent.popMatrix();
     }
-
 }

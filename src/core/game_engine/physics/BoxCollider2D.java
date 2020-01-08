@@ -8,9 +8,11 @@ import java.util.ArrayList;
 public class BoxCollider2D extends Component {
     private boolean hasCollided = false;
     private Rectangle bounds;
-    public Rectangle getBounds(){
-        return this.bounds;
-    }
+    private SIDES hitSideV = SIDES.NONE;
+    private SIDES hitSide = SIDES.NONE;
+    public boolean mouse_over = false; //flag for mouse interaction
+    public SIDES getHitSide(){ return hitSide; }
+    public Rectangle getBounds(){ return bounds; }
 
     private ArrayList<BoxCollider2D> otherColliders = new ArrayList<>();
 
@@ -26,6 +28,7 @@ public class BoxCollider2D extends Component {
     @Override
     public void update(){
         this.bounds.updateBounds(gameObject.position.x, gameObject.position.y); //create a variable for the new position to be updated
+        this.mouse_over = this.bounds.pointHit(this.gameObject.parent.mouseX, this.gameObject.parent.mouseY);
     }
     //check for collision
     public void checkCollisions(BoxCollider2D other){
@@ -33,6 +36,38 @@ public class BoxCollider2D extends Component {
         this.hasCollided = this.bounds.isOverlapping(other.bounds);
         if(this.hasCollided){
             this.otherColliders.add(other);
+        }
+    }
+    public void findCollisionSide(BoxCollider2D otherBox2D){
+        //overlap has been confirmed, now detect the actual side
+
+        hitSideV = SIDES.NONE;
+        //is touching above
+        boolean isTouchingAbove = this.bounds.getIsTouchingAbove(otherBox2D.getBounds());
+        boolean isTouchingBelow = false;
+        if(!isTouchingAbove){
+            //check below
+            isTouchingBelow = this.bounds.getIsTouchingBelow(otherBox2D.getBounds());
+        }
+        if(isTouchingAbove){
+            hitSideV = SIDES.BOTTOM;
+        } else if(isTouchingBelow){
+            hitSideV = SIDES.TOP;
+        }
+        hitSide = hitSideV;
+        //do side
+        if(hitSideV == SIDES.NONE){
+            boolean isTouchingRight = this.bounds.getIsTouchingRight(otherBox2D.getBounds());
+            boolean isTouchingLeft = false;
+
+            if(!isTouchingRight){
+                isTouchingLeft = this.bounds.getIsTouchingLeft(otherBox2D.getBounds());
+            }
+            if(isTouchingLeft){
+                hitSide = SIDES.LEFT;
+            }else if(isTouchingRight){
+                hitSide = SIDES.RIGHT;
+            }
         }
     }
 }
