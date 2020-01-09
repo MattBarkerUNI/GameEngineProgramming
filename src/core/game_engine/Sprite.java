@@ -12,7 +12,7 @@ public abstract class Sprite extends GameObject implements Serializable {
     public BoxCollider2D boxCollider2D;
     public String name = "My Sprite";
     public String type = "Sprite";
-    public PVector size;
+    public PVector size = new PVector(0,0,0);
 
     //protected Rectangle bounds;
 
@@ -39,6 +39,9 @@ public abstract class Sprite extends GameObject implements Serializable {
         sprite_data.setInt("w", (int)this.size.x);
         sprite_data.setInt("h", (int)this.size.y);
         sprite_data.setString("name", this.name);
+        if(this.type == "Collectable"){
+            System.out.println(this.size);
+        }
         sprite_data.setString("type", this.type);
         return sprite_data;
     }

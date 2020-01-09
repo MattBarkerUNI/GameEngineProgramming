@@ -1,6 +1,8 @@
 package core.game_engine.physics;
 
+import core.game.TestGame;
 import core.game_engine.Component;
+import core.game_engine.GameManager;
 import core.game_engine.LayerTypes;
 import core.game_engine.Sprite;
 import processing.core.PVector;
@@ -29,10 +31,13 @@ public class PhysicsComponent extends Component {
             for(BoxCollider2D b : this.boxCollider2D.getOtherColliders()) {
                 if (b.gameObject.getLayerType() == LayerTypes.INTERACTABLE) {
                     //add score, remove score, power up etc.
+                    GameManager.GAME_SCORE -= 40;
                     b.gameObject.setActive(false);
                 } else {
                     //static objects or moving
-                    setCollisionSide(b);
+                    //setCollisionSide(b);
+                    //restart
+                    TestGame.INSTANCE.game_over();
                 }
             }
                 //consider what happens with the collision now
@@ -64,26 +69,38 @@ public void turn(float dir){
         Point otherTopRight = otherBox2D.getBounds().getTopRight();
         Point otherBottomLeft = otherBox2D.getBounds().getBottomLeft();
         //switch case for the side hit
-        switch (this.boxCollider2D.getHitSide()){
-            case TOP:
-                //put this object on the bottom
-                this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
-                velocity.y = 0;
-                break;
-            case BOTTOM:
-                float tmpY = otherTopRight.getY();
-                float tmpYmove = this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
-                this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
-                velocity.y = 0;
-                break;
-            case LEFT:
-              //  this.gameObject.next_position.x = otherBottomLeft.getX() - this.boxCollider2D.getBounds().getWidth() / 2f - spacer;
-                velocity.x = 0;
-                break;
-            case RIGHT:
-               // this.gameObject.next_position.x = otherTopRight.getX() + this.boxCollider2D.getBounds().getWidth() / 2f + spacer;
-                velocity.x = 0;
-                break;
+        if(Math.abs(this.velocity. x) > Math.abs( this.velocity.y)){
+            //if the velocity horizontal is greater than vertical use the horizontal!
+            switch (this.boxCollider2D.getHitSideH()){
+
+                case LEFT:
+                    this.gameObject.next_position.x =  otherTopRight.getX() + ( this.boxCollider2D.getBounds().getWidth() / 2f ) + spacer;
+                    velocity.x = 0;
+
+                    break;
+                case RIGHT:
+                    this.gameObject.next_position.x = otherBottomLeft.getX() - (this.boxCollider2D.getBounds().getWidth() / 2f ) - spacer;
+                    velocity.x = 0;
+
+                    break;
+            }
+        }else{
+            switch (this.boxCollider2D.getHitSideV()){
+
+                case TOP:
+                    //put this object on the bottom
+                    this.gameObject.next_position.y = otherBottomLeft.getY() + this.boxCollider2D.getBounds().getHeight() / 2f + spacer;
+                    velocity.y = 0;
+                    break;
+                case BOTTOM:
+                    float tmpY = otherTopRight.getY();
+                    float tmpYmove = this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
+                    this.gameObject.next_position.y = otherTopRight.getY() - this.boxCollider2D.getBounds().getHeight() / 2f - spacer;
+                    velocity.y = 0;
+                    break;
+            }
         }
+
+
     }
 }

@@ -14,8 +14,10 @@ public class LevelManager {
     private GameManager gameManager;
     char currentKey = 't';
     private String level_name = "Level 1";
-    private int trackWidth = 60;
-    private int trackHeight = 60;
+    private int trackWidth = 25;
+    private int trackHeight = 25;
+    private int collectableWidth = 25;
+    private int collectableHeight = 25;
     String itemType = "Track";
     boolean mouse_down = false;
     DataManager dataManager;
@@ -98,13 +100,17 @@ public class LevelManager {
         switch (currentKey){
             case 't':
             case 'T':
+                itemType = "Track";
                 System.out.println("Add track");
                 Sprite new_sprite = add_object(grid_placement(parent.mouseX, trackWidth), grid_placement(parent.mouseY, trackWidth), trackWidth, trackHeight);
                 gameManager.add_game_object(new_sprite);
                 break;
             case 'c':
             case 'C':
-                System.out.println("Collectible");
+                itemType = "Collectable";
+                Sprite new_collectable = add_object(grid_placement(parent.mouseX, collectableWidth), grid_placement(parent.mouseY, collectableWidth), collectableWidth, collectableHeight);
+                gameManager.add_game_object(new_collectable);
+                System.out.println("Collectable");
                 break;
             case 's':
             case 'S':
@@ -133,13 +139,17 @@ public class LevelManager {
         Sprite sprite = null;
         switch (itemType){
             case "Track":
+
                 Track gameTrack = new Track(this.parent, x, y, w, h);
                 //gameManager.add_game_object(gameTrack);
                 loaded_game_objects.add(gameTrack);
                 sprite = gameTrack;
                 break;
-            case "Collectible":
-
+            case "Collectable":
+                Collectable gameCollectable = new Collectable(this.parent, x, y, w, h);
+                //gameManager.add_game_object(gameTrack);
+                loaded_game_objects.add(gameCollectable);
+                sprite = gameCollectable;
                 break;
             case "Car":
                 //add car

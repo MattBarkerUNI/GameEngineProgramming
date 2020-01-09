@@ -7,17 +7,23 @@ import core.game_engine.input_commands.InputController;
 import processing.core.PApplet;
 
 public class TestGame {
+    public static TestGame INSTANCE;
     public PApplet parent;
     private GameManager game_manager;
     Car car;
     Track track;
     InputController carInput; //controls the car's input
     DataManager dataManager;
-    GameMode gameMode = GameMode.START;
+    public GameMode gameMode = GameMode.START;
     LevelManager levelManager;
 
+    private int endScore = 0;
+public void game_over(){
+    this.gameMode = GameMode.GAME_OVER;
+}
     public TestGame(PApplet p) {
         this.parent = p;
+        TestGame.INSTANCE = this;
     }
 
     public void start() {
@@ -75,18 +81,29 @@ public class TestGame {
                 welcome_screen();
                 break;
             case PLAY:
+                endScore = (GameManager.GAME_SCORE / 60);
                 carInput.checkInput();
                 game_manager.update();
+                parent.text("Score " + endScore, 300, 200);
                 break;
             case EDIT:
                 //level editor mode
                 levelManager.update();
                 game_manager.update();
+                this.parent.fill(0);
+                parent.text("Edit mode: KEYS - Exit 1 | Add Track T | Delete D | Add Collectible C | Save S", 5, 18);
+
                 break;
             case RELOAD:
                 //load a level
                 load_game();
                 gameMode = GameMode.PLAY;
+                break;
+            case GAME_OVER:
+                parent.text("LOSER! Press Space to Restart", 400, 300);
+                game_manager.update();
+                parent.text("Score " + endScore, 300, 200);
+
                 break;
         }
     }
@@ -101,6 +118,11 @@ public class TestGame {
             case EDIT:
                 break;
             case RELOAD:
+                break;
+            case GAME_OVER:
+                if(key == ' ') {
+                    gameMode = GameMode.RELOAD;
+                }
                 break;
         }
     }
@@ -144,12 +166,11 @@ public class TestGame {
         parent.translate(parent.width / 4, parent.height / 4);
         parent.rectMode(PApplet.CORNERS);
         parent.fill(0, 255, 0);
-        parent.textSize(32);
-        parent.text("Welcome", 0, 0);
+        parent.textSize(100);
+        parent.text("Welcome", 20, 0);
         parent.textSize(28);
-        parent.text("Press any key to play", 0, 60);
-        parent.text("Press 1 key to edit", 0, 120);
-
+        parent.text("Press Space to play", 110, 60);
+        parent.text("Press '1' to edit the level", 80, 120);
         parent.popMatrix();
     }
 }

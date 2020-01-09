@@ -9,9 +9,10 @@ public class BoxCollider2D extends Component {
     private boolean hasCollided = false;
     private Rectangle bounds;
     private SIDES hitSideV = SIDES.NONE;
-    private SIDES hitSide = SIDES.NONE;
+    private SIDES hitSideH = SIDES.NONE;
     public boolean mouse_over = false; //flag for mouse interaction
-    public SIDES getHitSide(){ return hitSide; }
+    public SIDES getHitSideH(){ return hitSideH; }
+    public SIDES getHitSideV(){ return hitSideV; }
     public Rectangle getBounds(){ return bounds; }
 
     private ArrayList<BoxCollider2D> otherColliders = new ArrayList<>();
@@ -54,9 +55,10 @@ public class BoxCollider2D extends Component {
         } else if(isTouchingBelow){
             hitSideV = SIDES.TOP;
         }
-        hitSide = hitSideV;
+
+
         //do side
-        if(hitSideV == SIDES.NONE){
+        hitSideH = SIDES.NONE;
             boolean isTouchingRight = this.bounds.getIsTouchingRight(otherBox2D.getBounds());
             boolean isTouchingLeft = false;
 
@@ -64,10 +66,10 @@ public class BoxCollider2D extends Component {
                 isTouchingLeft = this.bounds.getIsTouchingLeft(otherBox2D.getBounds());
             }
             if(isTouchingLeft){
-                hitSide = SIDES.LEFT;
+                hitSideH = SIDES.LEFT;
             }else if(isTouchingRight){
-                hitSide = SIDES.RIGHT;
+                hitSideH = SIDES.RIGHT;
             }
-        }
+
     }
 }

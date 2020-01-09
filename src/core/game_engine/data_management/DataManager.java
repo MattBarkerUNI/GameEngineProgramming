@@ -24,6 +24,7 @@ public class DataManager {
         JSONArray new_list = new JSONArray();
         for(Serializable serialJson : json_list){
             //add to list
+
             new_list.append(serialJson.serializeToJSON());
         }
         this.game_data.setJSONArray(nameOfList, new_list);
