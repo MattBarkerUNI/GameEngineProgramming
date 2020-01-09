@@ -18,6 +18,8 @@ public class LevelManager {
     private int trackHeight = 25;
     private int collectableWidth = 25;
     private int collectableHeight = 25;
+    private int winnerWidth = 25;
+    private int winnerHeight = 25;
     String itemType = "Track";
     boolean mouse_down = false;
     DataManager dataManager;
@@ -98,6 +100,13 @@ public class LevelManager {
     private void handle_key(){
         System.out.println("handle_key currentKey " +currentKey);
         switch (currentKey){
+            case 'w':
+            case 'W':
+                itemType = "Winner";
+                System.out.println("Add winner");
+                Sprite new_winner = add_object(grid_placement(parent.mouseX, winnerWidth), grid_placement(parent.mouseY, winnerWidth), winnerWidth, winnerHeight);
+                gameManager.add_game_object(new_winner);
+                break;
             case 't':
             case 'T':
                 itemType = "Track";
@@ -150,6 +159,12 @@ public class LevelManager {
                 //gameManager.add_game_object(gameTrack);
                 loaded_game_objects.add(gameCollectable);
                 sprite = gameCollectable;
+                break;
+            case "Winner":
+                Winner gameWinner = new Winner(this.parent, x, y, w, h);
+                //gameManager.add_game_object(gameTrack);
+                loaded_game_objects.add(gameWinner);
+                sprite = gameWinner;
                 break;
             case "Car":
                 //add car

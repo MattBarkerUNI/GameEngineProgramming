@@ -27,9 +27,14 @@ public class PhysicsComponent extends Component {
         if(velocity.mag() > maxSpeed){
             velocity.setMag(maxSpeed);
         }
+
         if(this.boxCollider2D.getOtherColliders().size() > 0){
             for(BoxCollider2D b : this.boxCollider2D.getOtherColliders()) {
-                if (b.gameObject.getLayerType() == LayerTypes.INTERACTABLE) {
+                if (b.gameObject.getLayerType() == LayerTypes.WINNER) {
+                    //add score, remove score, power up etc.
+                    b.gameObject.setActive(false);
+                    TestGame.INSTANCE.WINNER();
+                }else if (b.gameObject.getLayerType() == LayerTypes.INTERACTABLE) {
                     //add score, remove score, power up etc.
                     GameManager.GAME_SCORE -= 40;
                     b.gameObject.setActive(false);
@@ -37,6 +42,8 @@ public class PhysicsComponent extends Component {
                     //static objects or moving
                     //setCollisionSide(b);
                     //restart
+
+
                     TestGame.INSTANCE.game_over();
                 }
             }

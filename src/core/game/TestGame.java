@@ -18,9 +18,15 @@ public class TestGame {
     LevelManager levelManager;
 
     private int endScore = 0;
-public void game_over(){
-    this.gameMode = GameMode.GAME_OVER;
-}
+
+    public void game_over(){
+        this.gameMode = GameMode.GAME_OVER;
+    }
+
+    public void WINNER() {
+        this.gameMode = GameMode.WINNER;
+    }
+
     public TestGame(PApplet p) {
         this.parent = p;
         TestGame.INSTANCE = this;
@@ -100,10 +106,13 @@ public void game_over(){
                 gameMode = GameMode.PLAY;
                 break;
             case GAME_OVER:
-                parent.text("LOSER! Press Space to Restart", 400, 300);
+                //parent.text("Loser! Press Space to Restart", 400, 300);
                 game_manager.update();
-                parent.text("Score " + endScore, 300, 200);
-
+                parent.text("Time:  " + endScore, 300, 200);
+            case WINNER:
+                parent.text("Press Space to Restart", 400, 300);
+                game_manager.update();
+                parent.text("Time:  " + endScore, 300, 200);
                 break;
         }
     }
@@ -120,6 +129,7 @@ public void game_over(){
             case RELOAD:
                 break;
             case GAME_OVER:
+            case WINNER:
                 if(key == ' ') {
                     gameMode = GameMode.RELOAD;
                 }
@@ -173,6 +183,7 @@ public void game_over(){
         parent.text("Press '1' to edit the level", 80, 120);
         parent.popMatrix();
     }
+
 }
 
 
